@@ -1,0 +1,15 @@
+com\jinwei\my\shop\commons\persistence\BaseService.class
+com\jinwei\my\shop\commons\utils\MapperUtils.class
+com\jinwei\my\shop\commons\dto\PageInfo.class
+com\jinwei\my\shop\commons\persistence\BaseTreeDao.class
+com\jinwei\my\shop\commons\validator\BeanValidator.class
+com\jinwei\my\shop\commons\persistence\BaseEntity.class
+com\jinwei\my\shop\commons\utils\RegexpUtils.class
+com\jinwei\my\shop\commons\constant\ConstantUtils.class
+com\jinwei\my\shop\commons\persistence\BaseDao.class
+com\jinwei\my\shop\commons\utils\HttpClientUtils.class
+com\jinwei\my\shop\commons\dto\BaseResult.class
+com\jinwei\my\shop\commons\persistence\BaseTreeService.class
+com\jinwei\my\shop\commons\utils\EmailSendUtils.class
+com\jinwei\my\shop\commons\utils\MapperUtils$1.class
+com\jinwei\my\shop\commons\utils\UNamePwdNewUtils.class

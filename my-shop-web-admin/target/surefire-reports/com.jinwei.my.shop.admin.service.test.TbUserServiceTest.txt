@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.jinwei.my.shop.admin.service.test.TbUserServiceTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.989 sec

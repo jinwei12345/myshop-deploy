@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jinwei.my.shop.web.admin.dao.TbUserDao">
+    <sql id="tbUserColumns">
+
+            tb_user.id,
+            tb_user.username,
+            tb_user.password,
+            tb_user.phone,
+            tb_user.email,
+            tb_user.created,
+            tb_user.updated
+    </sql>
+    <update id="update">
+        UPDATE
+          tb_user
+        SET
+          tb_user.username=#{username},
+          tb_user.password=#{password},
+          tb_user.phone=#{phone},
+          tb_user.email=#{email},
+          tb_user.updated=#{updated}
+         WHERE
+         tb_user.id=#{id}
+
+    </update>
+
+    <delete id="delete">
+        DELETE from  tb_user where id=#{id }
+    </delete>
+
+    <select id="selectAll" resultType="com.jinwei.my.shop.domain.TbUser">
+        SELECT
+          a.id,
+          a.username,
+          a.password,
+          a.phone,
+          a.email,
+          a.created,
+          a.updated
+        FROM
+          tb_user AS a
+    </select>
+    <select id="getById" resultType="com.jinwei.my.shop.domain.TbUser">
+        SELECT
+            <include refid="tbUserColumns"/>
+        FROM
+            tb_user
+        WHERE
+            tb_user.id= #{id}
+    </select>
+    <select id="getByEmail" resultType="com.jinwei.my.shop.domain.TbUser">
+         SELECT
+            tb_user.id,
+            tb_user.username,
+            tb_user.password,
+            tb_user.phone,
+            tb_user.email,
+            tb_user.created,
+            tb_user.updated
+        FROM
+            tb_user
+        WHERE tb_user.email=#{email}
+    </select>
+
+    <insert id="insert">
+    INSERT INTO tb_user (
+      id,
+      username,
+      password,
+      phone,
+      email,
+      created,
+      updated
+    )
+    VALUES
+      (
+        #{id},
+        #{username},
+        #{password},
+        #{phone},
+        #{email},
+        #{created},
+        #{updated}
+      )
+</insert>
+    <delete id="deleteMulti" >
+        DELETE FROM tb_user
+        WHERE id IN
+        <foreach collection="array" open="(" close=")" separator="," item="id">
+            #{id}
+        </foreach>
+    </delete>
+    <select id="page" resultType="com.jinwei.my.shop.domain.TbUser" parameterType="java.util.Map">
+        SELECT
+        <include refid="tbUserColumns"/>
+        FROM
+        tb_user
+        <where>
+            <if test="tbUser.username != null and tbUser.username != ''">
+                AND  tb_user.username LIKE CONCAT('%', #{tbUser.username}, '%')
+            </if>
+            <if test="tbUser.phone !=null and tbUser.phone !=''">
+                AND  tb_user.phone LIKE CONCAT('%', #{tbUser.phone}, '%')
+            </if>
+            <if test="tbUser.email !=null and tbUser.email !=''">
+                AND  tb_user.email LIKE CONCAT('%', #{tbUser.email}, '%')
+            </if>
+        </where>
+        LIMIT #{start},#{length}
+
+
+    </select>
+    <select id="count" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM   tb_user AS a
+        <where>
+            <if test="username != null and username != ''">
+                AND  a.username LIKE CONCAT('%', #{username}, '%')
+
+            </if>
+            <if test="phone !=null and phone !=''">
+                AND  a.phone LIKE CONCAT('%', #{phone}, '%')
+            </if>
+            <if test="email !=null and email !=''">
+                AND  a.email LIKE CONCAT('%', #{email}, '%')
+            </if>
+        </where>
+    </select>
+</mapper>
